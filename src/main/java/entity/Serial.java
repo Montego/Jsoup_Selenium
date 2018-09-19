@@ -22,7 +22,13 @@ public class Serial extends AbstractEntity{
     private String link;
 
     @Column
-    private Float rate;
+    private Float rateKinopoisk;
+
+    @Column
+    private Float rateIMDb;
+
+    @Column
+    private Float rateOwn;
 
     @Column
     private String description;
