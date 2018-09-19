@@ -1,12 +1,12 @@
 import entity.Serial;
 import lombok.extern.slf4j.Slf4j;
+import service.SerialService;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import service.SerialService;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,20 +29,21 @@ public class GetDocumentFromUrl {
         Elements div = doc.select("div.literal");
         Elements ul = div.select("li>a");
 
-        // writer = new FileWriter("D://fanserials/Serials.txt", false);
+         FileWriter writer = new FileWriter("D://fanserials/Serials.txt", false);
 
         for (Element x : ul) {
+            //запись в бд
             String name_rus = x.text();
-            String link = x.attr("href");
-            Serial serial = new Serial();
-            serial.setName_rus(name_rus);
-            serial.setLink(link);
-            serialService.addSerial(serial);
+//            String link = x.attr("href");
+//            Serial serial = new Serial();
+//            serial.setName_rus(name_rus);
+//            serial.setLink(link);
+//            serialService.addSerial(serial);
 
-            //System.out.println("\nСсылки " + x.attr("href") + " ------------------" + name_rus);
-            //writer.write("{Ссылка: " + x.attr("href") + "," + "\n" + "Название: " + name_rus + "}");
-            //writer.append('\n');
-            //writer.flush();
+            System.out.println("\nСсылки " + x.attr("href") + " ------------------" + name_rus);
+            writer.write("{Ссылка: " + x.attr("href") + "," + "\n" + "Название: " + name_rus + "}");
+            writer.append('\n');
+            writer.flush();
         }
     }
 }

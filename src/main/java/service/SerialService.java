@@ -22,15 +22,15 @@ public class SerialService implements ISerialService {
         return serialRepository.save(serial);
     }
 
-//    @Override
-//    public Serial getOneSerialByRusName(String name_rus) {
-//        return serialRepository.findByName_rus(name_rus);
-//    }
-//
-//    @Override
-//    public Serial getOneSerialByEngName(String name_eng) {
-//        return serialRepository.findByName_eng(name_eng);
-//    }
+    @Override
+    public Serial getOneSerialByName_rus(String name_rus) {
+        return serialRepository.findByNameRus(name_rus);
+    }
+
+    @Override
+    public Serial getOneSerialByName_eng(String name_eng) {
+        return serialRepository.findByNameEng(name_eng);
+    }
 
     @Override
     public List<Serial> getAllSerials() {

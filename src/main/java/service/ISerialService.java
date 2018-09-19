@@ -7,9 +7,9 @@ import java.util.List;
 public interface ISerialService {
     Serial addSerial(Serial serial);
 
-//    Serial getOneSerialByRusName(String name_rus);
-//
-//    Serial getOneSerialByEngName(String name_eng);
+    Serial getOneSerialByName_rus(String name_rus);
+
+    Serial getOneSerialByName_eng(String name_eng);
 
     List<Serial> getAllSerials();
 

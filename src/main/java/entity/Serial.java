@@ -13,10 +13,10 @@ import javax.persistence.Table;
 @Table(name="serials")
 public class Serial extends AbstractEntity{
     @Column(nullable = false)
-    private String name_rus;
+    private String nameRus;
 
     @Column
-    private String name_eng;
+    private String nameEng;
 
     @Column(nullable = false)
     private String link;
