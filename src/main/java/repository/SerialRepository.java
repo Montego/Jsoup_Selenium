@@ -9,7 +9,11 @@ public interface SerialRepository extends JpaRepository<Serial, Long> {
 
     Serial findByNameEng(String name_eng);
 
-    Serial findByRate(Float rate);
+    Serial findByRateOwn(Float rate);
+
+    Serial findByRateKinopoisk(Float rate);
+
+    Serial findByRateIMDb(Float rate);
 
     List<Serial> findAll();
 }
