@@ -1,4 +1,6 @@
 package repository;
+
+
 import entity.Serial;
 import org.springframework.data.jpa.repository.JpaRepository;
 

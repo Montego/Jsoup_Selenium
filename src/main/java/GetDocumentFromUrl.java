@@ -1,18 +1,16 @@
-import entity.Serial;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import service.SerialService;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import service.SerialService;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,19 +65,40 @@ public class GetDocumentFromUrl {
         for (String filmName : filmNames) {
             System.out.println(filmName);
         }
-        try{
-            WebDriver firefoxDriver =  new FirefoxDriver();
-            WebElement search_input = firefoxDriver.findElement(By.id("serial_search_input"));
-            WebElement search_submit = firefoxDriver.findElement(By.className("ajax-inp-submit"));
-            WebElement serial_info = firefoxDriver.findElement(By.className("item-search-header")).findElement(By.xpath("./h2/a"));
+        try {
+            System.getProperty("driver.chrome");
+            WebDriver chromeDriver = new ChromeDriver();
+
+            //WebDriver chromeDriver =  new FirefoxDriver();
+            WebElement search_input = chromeDriver.findElement(By.id("serial_search_input"));
+            WebElement search_submit = chromeDriver.findElement(By.className("ajax-inp-submit"));
+            WebElement serial_info = chromeDriver.findElement(By.className("item-search-header")).findElement(By.xpath("./h2/a"));
 
             for (String filmName : filmNames) {
                 search_input.sendKeys(filmName);
                 search_submit.click();
                 serial_info.click();
-                //место для сбора данных и записи в бд
+
+                WebElement name_r = chromeDriver.findElement(By.className("page-title"));
+
+                String name_rus = name_r.getText();
+                String name_eng = null;
+                String description = null;
+                Float rateKinopoisk = null;
+                Float rateIMDb = null;
+
+
+                //запись в бд
+//                Serial serial = new Serial();
+//                serial.setNameRus(name_rus);
+//                serial.setNameEng(name_eng);
+//                serial.setDescription(description);
+//                serial.setRateKinopoisk(rateKinopoisk);
+//                serial.setRateIMDb(rateIMDb);
+//                serialService.addSerial(serial);
+
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error("WebDriver connection false");
         }
 

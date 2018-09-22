@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Setter
 @Entity
 @Table(name="serials")
-public class Serial extends AbstractEntity{
+public class Serial extends AbstractEntity {
     @Column(nullable = false)
     private String nameRus;
 
